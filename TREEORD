@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int Ord(int *Preor, int *Postor, int *in, int arv)
+{
+    if( Preor[0] != Postor[arv - 1] ) {
+        return 0;
+    }
+
+    if(arv == 1){
+        if(Preor[0] == Postor[0] && Postor[0] == in[0]){
+            return 1;
+            }else{
+                return 0;
+            }
+    }
+    int i;
+    for(i = 0; i < arv; i++)
+        if(in[i] == Preor[0]) break;
+
+    if(i == arv)
+    {
+        return 0;
+    }
+
+    int left = 0;
+    int j;
+    int resultado = 1;
+    int postor_r = Postor[arv - 2];
+
+    for(j = 0; j < arv; j++)
+        if(Preor[j] == postor_r){
+            if((resultado *= Ord(Preor + j, (Postor + j) - 1, in + i + 1, arv - j)) == 0){
+              return 0;
+            }
+            left = j - 1;
+            break;
+        }
+        if(i != 0) resultado *= Ord(Preor + 1, Postor, in + 1, left);
+
+    return resultado;
+}
+
+int main()
+{
+    int T, i;
+
+    printf("digite a raiz\n");
+    scanf("%d", &T);
+
+    printf("\nsub-arvore\n");
+
+
+    int Preor[T], Postor[T], in[T];
+
+    for(i = 0; i < T; i++){
+        scanf("%d", &Preor[i]);
+    }
+    for(i = 0; i < T; i++){
+        scanf("%d", &Postor[i]);
+    }
+    for(i = 0; i < T; i++){
+        scanf("%d", &in[i]);
+    }
+    if(Ord(Preor, Postor, in, T)){
+        printf("yes\n");
+    }else{
+        printf("no\n");
+    }
+}
