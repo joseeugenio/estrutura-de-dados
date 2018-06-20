@@ -1,0 +1,10 @@
+ok back - Imprime o número de trás e depois apaga(slide)
+
+ok frente - Imprima o número da frente e depois apague-o(slide)
+
+ok reverse - Reverte todos os elementos na fila
+
+push_back N - adiciona o elemento N ao verso (slide)
+
+toFront N - Coloque o elemento N na frente (slid)
+
